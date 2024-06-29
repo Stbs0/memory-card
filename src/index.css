@@ -10,6 +10,9 @@
     @apply w-screen h-full relative min-w-min;
   }
   #root {
-    @apply  h-full  flex items-center min-w-min !important;
+    @apply h-full  flex items-center min-w-min !important;
+  }
+  .card {
+    @apply p-3;
   }
 }

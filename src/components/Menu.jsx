@@ -2,8 +2,8 @@ import React from "react";
 export function Menu() {
   return (
     <div className='place-self-end justify-self-center backdrop-blur-md  bg-white/30 rounded-t-xl h-12 px-4 py-2 flex items-center justify-center absolute bottom-0 left-1/2 transform -translate-x-1/2 min-w-52 text-nowrap'>
-      <div className=''>
-        Created by Stbs0
+      <div>
+        <h1 className='prose '>Created by Stbs0</h1>
         <a
           href='https://github.com/Stbs0'
           target='_blank'
