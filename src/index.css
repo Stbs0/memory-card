@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply w-screen h-full min-w-min;
+  }
+  body {
+    @apply w-screen h-full relative min-w-min;
+  }
+  #root {
+    @apply  h-full  flex items-center min-w-min !important;
+  }
+}

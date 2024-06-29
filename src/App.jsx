@@ -1,19 +1,25 @@
-import { useState } from "react";
+import { Menu } from "./components/Menu";
+
 import BackgroundImg from "./assets/bg.jpg";
-import { Pokedex } from "pokeapi-js-wrapper";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className='h-screen relative *:text-white '>
+    <>
       <img
         src={BackgroundImg}
         alt=''
-        className=' absolute  w-full object-center object-cover h-full opacity-70 -z-10'
+        className=' absolute  size-full object-center object-cover brightness-150 -z-10'
       />
-      <div className='h-16  bg-slate-700 rounded-b-xl'>hello</div>
-    </div>
+      <div className='bg-slate-500/70 backdrop-blur-sm  rounded-lg text-white h-[18rem]  container mx-auto basis-[25rem] min-w-80 '>
+        <div className='columns-3'>
+          <div>dddd</div>
+          <div>ffff</div>
+          <div>ffff</div>
+          <button></button>
+        </div>
+      </div>
+      <Menu />
+    </>
   );
 }
 
