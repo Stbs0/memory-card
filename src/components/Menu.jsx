@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
 export function Menu() {
+  const score = useSelector((state) => state.scoreReducer);
+  const bestScore = useSelector((state) => state.bestScoreReducer);
   return (
     <div className='  backdrop-blur-md  rounded-b-xl  px-4 py-2 flex flex-col sm:flex-row items-center gap-4 text-white'>
       <div>
@@ -9,8 +12,8 @@ export function Menu() {
         </p>
       </div>
       <div className='  px-2 w-[100px]  '>
-        <p>score:</p>
-        <p>best score:fb</p>
+        <p>score:{score}</p>
+        <p>best score:{bestScore}</p>
       </div>
       <div>
         <a

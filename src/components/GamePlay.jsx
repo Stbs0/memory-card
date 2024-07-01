@@ -3,9 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import shuffle from "../utilis/shuffleCards";
 // TODO: add status to keep score
-function GamePlay({count}) {
+function GamePlay({ count }) {
   const [cards, setCards] = useState([]);
-  
+
   useEffect(() => {
     axios.get("https://pokeapi.co/api/v2/pokemon?limit=15").then((res) => {
       const picsAndNames = res.data.results.map((pokemon) => {
@@ -19,7 +19,7 @@ function GamePlay({count}) {
     });
   }, []);
   console.log(cards);
-  const shuffledCards = shuffle([...cards])
+  const shuffledCards = shuffle([...cards]);
   return (
     <div className='bg-slate-500/70   backdrop-blur-sm  container  mx-auto  rounded-lg text-white    px-5  py-4  '>
       <div className=' flex flex-wrap justify-center   gap-7 '>
