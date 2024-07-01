@@ -3,16 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply w-screen h-full min-w-min;
-  }
-  body {
-    @apply w-screen h-full relative min-w-min;
-  }
+ 
   #root {
-    @apply h-full  flex items-center min-w-min !important;
+    @apply h-screen  grid grid-cols-1   gap-4 items-center relative !important;
   }
-  .card {
-    @apply p-3;
-  }
+  
 }
