@@ -10,8 +10,8 @@ function App() {
         alt=''
         className=' absolute  size-full object-center object-cover brightness-150 -z-10'
       />
-    <GamePlay     />
       <Menu />
+    <GamePlay     />
     </>
   );
 }
