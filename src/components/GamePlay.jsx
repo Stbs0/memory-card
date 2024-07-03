@@ -2,8 +2,7 @@ import Card from "./Card";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import shuffle from "../utilis/shuffleCards";
-// TODO: add status to keep score
-function GamePlay({ count }) {
+function GamePlay({ setScore, setBestScore, score, bestScore }) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -20,6 +19,18 @@ function GamePlay({ count }) {
   }, []);
   console.log(cards);
   const shuffledCards = shuffle([...cards]);
+  const handleOnClick = (isClicked, setStatus) => {
+    if (isClicked) {
+      setScore(0);
+      setStatus(false);
+      
+    } else {
+      setScore(score +1);
+      setStatus(true);
+      console.log(isClicked)
+    }
+    bestScore <= score && setBestScore(()=>score+1); 
+  };
   return (
     <div className='bg-slate-500/70   backdrop-blur-sm  container  mx-auto  rounded-lg text-white    px-5  py-4  '>
       <div className=' flex flex-wrap justify-center   gap-7 '>
@@ -29,6 +40,7 @@ function GamePlay({ count }) {
               key={card.name}
               img={card.pic}
               name={card.name}
+              handleOnClick={handleOnClick}
             />
           );
         })}

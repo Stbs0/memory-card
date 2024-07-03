@@ -2,7 +2,10 @@ import { Menu } from "./components/Menu";
 
 import BackgroundImg from "./assets/bg.jpg";
 import GamePlay from "./components/GamePlay";
+import { useState } from "react";
 function App() {
+  const [score, setScore] = useState(0);
+  const [bestScore,setBestScore]=useState(0)
   return (
     <>
       <img
@@ -10,8 +13,16 @@ function App() {
         alt=''
         className=' absolute  size-full object-center object-cover brightness-150 -z-10'
       />
-      <Menu />
-    <GamePlay     />
+      <Menu
+        score={score}
+        bestScore={bestScore}
+      />
+      <GamePlay
+        setScore={setScore}
+        score={score}
+        bestScore={bestScore}
+        setBestScore={setBestScore}
+      />
     </>
   );
 }
