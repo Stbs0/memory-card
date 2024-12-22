@@ -1,19 +1,30 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ScoreContext } from "../contexts/ScoreContext";
+import PropTypes from "prop-types";
 
-function Card({ img, name, handleOnClick }) {
-  const [isClicked, setIsClicked] = useState(false);
+function Card({ pic, name, isClicked,refetch, handleShuffle }) {
+  const { score, setScore, bestScore, setBestScore } = useContext(ScoreContext);
 
-  // Todo: dispacth isnt working correctly
-  // score isClicked isnt reseting to defualt
-  // does not render when clicked
+  const handleOnClick = () => {
+    if (isClicked) {
+      setScore(0);
+      refetch();
+    } else {
+      setScore(score + 1);
+      handleShuffle();
+    }
+    if (bestScore < score) {
+      setBestScore(() => score);
+    }
+  };
 
   return (
     <button
-      onClick={() => handleOnClick(isClicked, setIsClicked)}
-      className=' flex flex-col items-center shadow-lg bg-slate-400/40 rounded-lg w-fit px-2 pt-2  space-y-2'>
+      onClick={handleOnClick}
+      className=' flex flex-col items-center shadow-lg bg-slate-400/40 rounded-lg w-fit px-2 pt-2 justify-center space-y-2'>
       <img
         className='size-40 rounded-md  '
-        src={img}
+        src={pic}
         alt='pokemon'
       />
 
@@ -21,4 +32,13 @@ function Card({ img, name, handleOnClick }) {
     </button>
   );
 }
+
+Card.propTypes = {
+  pic: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  isClicked: PropTypes.bool.isRequired,
+  handleShuffle: PropTypes.func.isRequired,
+  refetch: PropTypes.func.isRequired,
+};
+
 export default Card;

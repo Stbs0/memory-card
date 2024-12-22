@@ -1,50 +1,38 @@
 import Card from "./Card";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import shuffle from "../utilis/shuffleCards";
-function GamePlay({ setScore, setBestScore, score, bestScore }) {
-  const [cards, setCards] = useState([]);
+import { queryClient } from "../App";
+import usePokemon from "../hooks";
+function GamePlay() {
+  const { data, isLoading, refetch } = usePokemon();
 
-  useEffect(() => {
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=15").then((res) => {
-      const picsAndNames = res.data.results.map((pokemon) => {
-        pokemon.pic = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
-          pokemon.url.split("/")[6]
-        }.svg`;
-        delete pokemon.url;
-        return pokemon;
-      });
-      setCards(picsAndNames);
-    });
-  }, []);
-  console.log(cards);
-  const shuffledCards = shuffle([...cards]);
-  const handleOnClick = (isClicked, setStatus) => {
-    if (isClicked) {
-      setScore(0);
-      setStatus(false);
-      
-    } else {
-      setScore(score +1);
-      setStatus(true);
-      console.log(isClicked)
+  console.log(data);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const handleShuffle = () => {
+    const queryKey = ["pokemon"];
+
+    const cachedData = queryClient.getQueryData(queryKey);
+
+    if (cachedData) {
+      const shuffledData = shuffle([...cachedData]); // Shuffle the data
+      queryClient.setQueryData(queryKey, shuffledData); // Update the cache with shuffled data
     }
-    bestScore <= score && setBestScore(()=>score+1); 
   };
+
+  console.log(data);
   return (
-    <div className='bg-slate-500/70   backdrop-blur-sm  container  mx-auto  rounded-lg text-white    px-5  py-4  '>
-      <div className=' flex flex-wrap justify-center   gap-7 '>
-        {shuffledCards.map((card) => {
-          return (
-            <Card
-              key={card.name}
-              img={card.pic}
-              name={card.name}
-              handleOnClick={handleOnClick}
-            />
-          );
-        })}
-      </div>
+    <div className='bg-slate-500/70 grid sm:grid-cols-2 md:grid-cols-3 backdrop-blur-sm    mx-auto my-auto rounded-lg text-black gap-10 place-items-center   px-16 py-10  '>
+      {data.slice(9).map((card) => {
+        return (
+          <Card
+            handleShuffle={handleShuffle}
+            key={card.name}
+            refetch={refetch}
+            {...card}
+          />
+        );
+      })}
     </div>
   );
 }
