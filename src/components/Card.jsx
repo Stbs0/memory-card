@@ -1,22 +1,11 @@
+import PropTypes from "prop-types";
 import { useContext } from "react";
 import { ScoreContext } from "../contexts/ScoreContext";
-import PropTypes from "prop-types";
 
-function Card({ pic, name, isClicked,refetch, handleShuffle }) {
+function Card({ pic, name, isClicked, refetch, handleShuffle }) {
   const { score, setScore, bestScore, setBestScore } = useContext(ScoreContext);
 
-  const handleOnClick = () => {
-    if (isClicked) {
-      setScore(0);
-      refetch();
-    } else {
-      setScore(score + 1);
-      handleShuffle();
-    }
-    if (bestScore < score) {
-      setBestScore(() => score);
-    }
-  };
+
 
   return (
     <button

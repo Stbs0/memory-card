@@ -4,25 +4,25 @@ import { ScoreContext } from "../contexts/ScoreContext";
 export const Score = () => {
   const { score, bestScore } = useContext(ScoreContext);
   return (
-    <div className='  px-2  shrink-0 '>
+    <>
       <p>score: {score}</p>
       <p>best score: {bestScore}</p>
-    </div>
+    </>
   );
 };
 
 export function Menu() {
   return (
-    <div className="backdrop-blur-md rounded-b-xl px-4 py-2 flex flex-col sm:flex-row items-center justify-around gap-4 text-white">
+    <div className='backdrop-blur-md rounded-b-xl px-4 py-2 flex flex-col sm:flex-row items-center justify-around gap-4 text-white'>
       <div>
-        <h1 className="text-4xl font-bold">Pokemon Memory Card Game</h1>
-        <p className="text-xl font-semibold">
-          Get points by clicking on an image but don&apos;t click on any more than
-          once!
+        <h1 className='text-4xl font-bold'>Pokemon Memory Card Game</h1>
+        <p className='text-xl font-semibold'>
+          Get points by clicking on an image but don&apos;t click on any more
+          than once!
         </p>
       </div>
-      <Score />
-      <div>
+      <div className='px-2 flex gap-4 items-center shrink-0'>
+        <Score />
         <a
           href='https://github.com/Stbs0'
           target='_blank'
